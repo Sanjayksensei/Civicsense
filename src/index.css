@@ -1,0 +1,161 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+  
+  html {
+    font-family: 'Inter', sans-serif;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-[#F8FAFC] text-gray-900;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  body.dark {
+    @apply bg-[#0F172A] text-gray-100;
+  }
+}
+
+@layer components {
+  .glass {
+    @apply backdrop-blur-md bg-white/70 border border-white/20;
+  }
+
+  .glass-dark {
+    @apply backdrop-blur-md bg-gray-900/70 border border-white/10;
+  }
+
+  .gradient-text {
+    @apply bg-gradient-to-r from-[#0F4C81] to-[#14B8A6] bg-clip-text text-transparent;
+  }
+
+  .card-hover {
+    @apply transition-all duration-300 hover:-translate-y-1 hover:shadow-lg;
+  }
+
+  .btn-primary {
+    @apply bg-gradient-to-r from-[#0F4C81] to-[#1565A8] text-white px-6 py-3 rounded-xl font-semibold
+           hover:from-[#0a3d6b] hover:to-[#1254a0] transition-all duration-200 shadow-md hover:shadow-lg
+           active:scale-95;
+  }
+
+  .btn-secondary {
+    @apply bg-white text-[#0F4C81] border-2 border-[#0F4C81] px-6 py-3 rounded-xl font-semibold
+           hover:bg-[#0F4C81] hover:text-white transition-all duration-200
+           active:scale-95;
+  }
+
+  .btn-teal {
+    @apply bg-gradient-to-r from-[#14B8A6] to-[#0d9488] text-white px-6 py-3 rounded-xl font-semibold
+           hover:from-[#0d9488] hover:to-[#0b7a6f] transition-all duration-200 shadow-md hover:shadow-lg
+           active:scale-95;
+  }
+
+  .sidebar-item {
+    @apply flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium cursor-pointer
+           transition-all duration-200 hover:bg-blue-50 hover:text-[#0F4C81];
+  }
+
+  .sidebar-item.active {
+    @apply bg-blue-50 text-[#0F4C81];
+  }
+
+  .dark .sidebar-item:hover {
+    @apply bg-gray-800 text-blue-400;
+  }
+
+  .dark .sidebar-item.active {
+    @apply bg-gray-800 text-blue-400;
+  }
+}
+
+@layer utilities {
+  .scrollbar-thin {
+    scrollbar-width: thin;
+    scrollbar-color: #cbd5e1 transparent;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    background-color: #cbd5e1;
+    border-radius: 100px;
+  }
+
+  .dark .scrollbar-thin {
+    scrollbar-color: #374151 transparent;
+  }
+}
+
+/* Typing animation */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.typing-cursor::after {
+  content: '|';
+  animation: blink 1s infinite;
+}
+
+/* Wave animation for voice */
+@keyframes wave {
+  0%, 100% { transform: scaleY(1); }
+  50% { transform: scaleY(2); }
+}
+
+.wave-bar {
+  animation: wave 1s ease-in-out infinite;
+}
+
+/* Floating animation */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+.float {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Shimmer animation for skeletons */
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.skeleton {
+  background: linear-gradient(90deg, #e2e8f0 25%, #f1f5f9 50%, #e2e8f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+.dark .skeleton {
+  background: linear-gradient(90deg, #1e293b 25%, #2d3748 50%, #1e293b 75%);
+  background-size: 200% 100%;
+}
+
+/* Pulse ring for microphone */
+@keyframes pulse-ring {
+  0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(20, 184, 166, 0.7); }
+  70% { transform: scale(1); box-shadow: 0 0 0 15px rgba(20, 184, 166, 0); }
+  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(20, 184, 166, 0); }
+}
+
+.pulse-ring {
+  animation: pulse-ring 2s cubic-bezier(0.455, 0.03, 0.515, 0.955) infinite;
+}
